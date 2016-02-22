@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,10 +15,21 @@
     tools:showIn="@layout/activity_main">
 
     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test Button"
+        android:id="@+id/test_button"
+        android:layout_below="@+id/water_button"
+        android:layout_centerHorizontal="true" />
+
+    <Button
         android:id="@+id/water_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/find_water"
-        android:onClick="goToMap"/>
+        android:onClick="goToMap"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/test_button"
+        android:layout_alignStart="@+id/test_button" />
 
-</LinearLayout>
+</RelativeLayout>
