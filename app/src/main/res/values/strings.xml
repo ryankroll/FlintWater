@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Flint Water</string>
+    <string name="action_settings">Settings</string>
+    <string name="find_water">Find Water</string>
+    <string name="title_activity_show_water">Map</string>
+    <string name="flint_marker">Marker in flint</string>
+</resources>
