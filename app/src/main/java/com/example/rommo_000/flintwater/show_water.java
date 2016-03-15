@@ -1,8 +1,17 @@
 package com.example.rommo_000.flintwater;
 
+import android.content.AsyncTaskLoader;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+
+import com.firebase.geofire.GeoFire;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -14,6 +23,11 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
+    // get a reference to firebase database
+    Firebase ref = new Firebase("https://incandescent-fire-5642.firebaseio" +
+            ".com/");
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +36,7 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        Firebase.setAndroidContext(this);
     }
 
 
@@ -50,6 +65,62 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback {
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(flint, 16));
 
+        // Call PlaceMarkers on a different thread to place markers on the map.
+        new PlaceMarkers().execute(ref);
 
     }
+    private class PlaceMarkers extends AsyncTask<Firebase, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Firebase... params) {
+            //Check for new values added to database
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot postSnapShot : dataSnapshot.getChildren()) {
+                        WaterAddress address = postSnapShot.getValue(WaterAddress.class);
+                        mMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(address.getLatitude(), address.getLongitude())));
+                    }
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+                }
+            });
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+    }
+
+    public class WaterAddress {
+        private String city;
+        private String close;
+        private String name;
+        private String open;
+        private String state;
+        private String street;
+        private int zipCode;
+        private double latitude;
+        private double longitude;
+
+        public WaterAddress(){ }
+
+        public double getLongitude() {
+            return longitude;
+        }
+
+        public double getLatitude() {
+            return latitude;
+        }
+    }
+
 }
