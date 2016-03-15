@@ -100,7 +100,7 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback {
             super.onPostExecute(aVoid);
         }
     }
-
+// Class to hold address from firebase.
     public class WaterAddress {
         private String city;
         private String close;
