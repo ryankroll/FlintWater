@@ -1,5 +1,6 @@
 package com.example.rommo_000.flintwater;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -93,6 +94,9 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback,
     @Override
     public void onInfoWindowClick(Marker marker) {
         Log.d("Success: ", "Info windows was clicked");
+        Intent intent = new Intent(this, address_info.class);
+        intent.putExtra("EXTRA_LOCATION", marker.getTitle());
+        startActivity(intent);
     }
 
 }

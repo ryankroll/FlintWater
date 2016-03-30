@@ -4,4 +4,5 @@
     <string name="find_water">Find Water</string>
     <string name="title_activity_show_water">Map</string>
     <string name="flint_marker">Marker in flint</string>
+    <string name="title_activity_address_info">address_info</string>
 </resources>
