@@ -22,10 +22,9 @@ public class MainActivity extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         setSupportActionBar(toolbar);
 
-
     }
 
-    @Override
+  /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     /******************************************
      * INTENT BELOW NOT FINISHED
@@ -54,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
     public void goToMap(View view) {
        // Toast.makeText(this,"You Clicked",Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, show_water.class);
+        startActivity(intent);
+    }
+
+    public void goToLogin(View view) {
+        Intent intent = new Intent(this, admin_login.class);
         startActivity(intent);
     }
 }

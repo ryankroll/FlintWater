@@ -9,7 +9,6 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-
     <user-permission android:name="android.permission.INTERACT.ACROSS_USERS_FULL"/>
 
     <application
@@ -46,8 +45,26 @@
         <activity
             android:name=".address_info"
             android:label="@string/title_activity_address_info"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+                android:name=".admin_login"
+                android:label="@string/title_activity_admin_login"
+                android:parentActivityName=".MainActivity"
+                android:theme="@style/AppTheme.NoActionBar"/>
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.example.rommo_000.flintwater.MainActivity" />
+        <activity
+                android:name=".edit_db"
+                android:label="@string/title_activity_edit_db"
+                android:parentActivityName=".MainActivity"
+                android:theme="@style/AppTheme.NoActionBar"/>
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.example.rommo_000.flintwater.MainActivity" />
+
+
     </application>
 
 </manifest>

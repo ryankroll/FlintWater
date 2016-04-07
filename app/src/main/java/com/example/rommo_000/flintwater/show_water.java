@@ -34,7 +34,6 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback
     // get a reference to firebase database
     Firebase ref = new Firebase("https://incandescent-fire-5642.firebaseio.com/WaterAddress");
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +69,7 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(flint).title(getString(R.string.flint_marker)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(flint));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(flint, 13));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(flint, 12));
 
         //mMap.setOnInfoWindowClickListener(this);
         //Place markers on map
@@ -84,7 +83,7 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback
                     mMap.addMarker((new MarkerOptions().position((new LatLng(address.getLatitude
                             (), address.getLongitude()))).title(address.getLocation())).snippet
                             (address.getAddress()+ ", "  + address.getCity() +  " " +address
-                                    .getState() + ", " + x));
+                                    .getState() + ", " + address.getZipCode()));
                 }
             }
 

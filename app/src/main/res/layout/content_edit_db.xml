@@ -8,28 +8,36 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:gravity="center_horizontal"
-    android:background="@drawable/flint_river"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.rommo_000.flintwater.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context="com.example.rommo_000.flintwater.edit_db"
+    tools:showIn="@layout/activity_edit_db">
 
     <Button
-        android:id="@+id/water_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/find_water"
-        android:onClick="goToMap"
+        android:text="Remove Location"
+        android:onClick="removeLocation"
+        android:id="@+id/RemoveLocation"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="62dp" />
+
     <Button
-        android:id="@+id/AdminLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Admin Login"
-        android:onClick="goToLogin"
+        android:text="Add Location"
+        android:onClick="addLocation"
+        android:id="@+id/AddLocation"
+        android:layout_below="@+id/RemoveLocation"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:onClick="onLogout"
+        android:id="@+id/Logout"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="55dp"/>
-
+        android:layout_marginBottom="43dp" />
 </RelativeLayout>
