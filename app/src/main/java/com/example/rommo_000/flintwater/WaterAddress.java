@@ -1,8 +1,5 @@
 package com.example.rommo_000.flintwater;
 
-/**
- * Created by rkroll on 3/15/2016.
- */
 // Class to hold address from firebase.
 public class WaterAddress {
         private double latitude;
@@ -11,7 +8,7 @@ public class WaterAddress {
         private String city;
         private String state;
         private String address;
-        private double zipCode;
+        private long zipCode;
 
         public WaterAddress(){
             // Defualt Constructor

@@ -4,16 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
-import com.firebase.client.ChildEventListener;
+
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 
 import com.google.android.gms.location.places.Place;
@@ -25,15 +23,18 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class show_water extends FragmentActivity implements OnMapReadyCallback,
-        GoogleMap.OnInfoWindowClickListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class show_water extends FragmentActivity implements OnMapReadyCallback
+         {
 
     private GoogleMap mMap;
 
     // get a reference to firebase database
     Firebase ref = new Firebase("https://incandescent-fire-5642.firebaseio.com/WaterAddress");
 
-    //Query queryRef = ref.orderByChild("Name");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +72,7 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback,
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(flint, 13));
 
-        mMap.setOnInfoWindowClickListener(this);
+        //mMap.setOnInfoWindowClickListener(this);
         //Place markers on map
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -79,8 +80,11 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback,
 
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
                     WaterAddress address = postSnapshot.getValue(WaterAddress.class);
+                    int x = (int) address.getZipCode();
                     mMap.addMarker((new MarkerOptions().position((new LatLng(address.getLatitude
-                            (), address.getLongitude()))).title(address.getLocation())));
+                            (), address.getLongitude()))).title(address.getLocation())).snippet
+                            (address.getAddress()+ ", "  + address.getCity() +  " " +address
+                                    .getState() + ", " + x));
                 }
             }
 
@@ -89,14 +93,38 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback,
                 Log.d("Failure: ", firebaseError.getMessage());
             }
         });
-
     }
-    @Override
+    /*@Override
     public void onInfoWindowClick(Marker marker) {
         Log.d("Success: ", "Info windows was clicked");
         Intent intent = new Intent(this, address_info.class);
         intent.putExtra("EXTRA_LOCATION", marker.getTitle());
+        intent.putExtra("EXTRA_KEY", marker.getSnippet());
         startActivity(intent);
     }
+
+    class customInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        WaterAddress address = new WaterAddress();
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            return null;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            View v = getLayoutInflater().inflate(R.layout.info_window_layout, null);
+            LatLng latLng = marker.getPosition();
+
+            TextView titleTextView = (TextView) v.findViewById(R.id.title);
+            TextView addressTextView = (TextView) v.findViewById(R.id.address);
+
+            titleTextView.setText(marker.getTitle());
+            addressTextView.setText(address.getAddress());
+            return v;
+        }
+    }
+    */
 
 }
