@@ -1,5 +1,9 @@
 package com.example.rommo_000.flintwater;
 
+import android.widget.Toast;
+
+import com.firebase.client.Firebase;
+
 // Class to hold address from firebase.
 public class WaterAddress {
         private double latitude;
@@ -11,8 +15,18 @@ public class WaterAddress {
         private long zipCode;
 
         public WaterAddress(){
-            // Defualt Constructor
+                //Defualt Constructor
         }
+
+       /* public WaterAddress(double lat, double lon) {
+                latitude = lat;
+                longitude = lon;
+                location = "New Location";
+                city = "Flint";
+                state = "MI";
+                address = "New address";
+                zipCode = 48502;
+        }*/
 
         public double getLongitude() {return longitude;}
 
@@ -27,4 +41,18 @@ public class WaterAddress {
         public double getZipCode() {return zipCode;}
 
         public String getAddress() {return address;}
+
+        public void setLongitude(double lng) {longitude = lng;}
+
+        public void setLatitude(double lat) {latitude = lat;}
+
+        public void setLocation(String loc) {location = loc;}
+
+        public void setCity(String c) {city = c;}
+
+        public void setState(String s) {state = s;}
+
+        public void setAddress(String a) {address = a;}
+
+        public void setZipCode(long zc) {zipCode = zc;}
     }

@@ -1,8 +1,11 @@
 package com.example.rommo_000.flintwater;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -66,8 +69,14 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback
         // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         LatLng flint = new LatLng(43.0100, -83.6900);
-        mMap.addMarker(new MarkerOptions().position(flint).title(getString(R.string.flint_marker)));
+        //mMap.addMarker(new MarkerOptions().position(flint).title(getString(R.string.flint_marker)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(flint));
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mMap.setMyLocationEnabled(true);
+        } else {
+            Log.d("Location: ", "User does not have permission");
+        }
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(flint, 12));
 

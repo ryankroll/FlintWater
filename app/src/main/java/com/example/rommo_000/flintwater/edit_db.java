@@ -109,8 +109,9 @@ public class edit_db extends AppCompatActivity {
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Locations newLocation = new Locations(lat.getText().toString(),lon.getText().toString());
-                newLocation.add(newLocation,"Location Added");
+                //Locations newLocation = new Locations(lat.getText().toString(),lon.getText()
+                       // .toString());
+                //newLocation.add(newLocation,"Location Added");
             }
         });
         AlertDialog ad = builder.create();
@@ -134,7 +135,12 @@ public class edit_db extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Locations newLocation = new Locations(lat.getText().toString(),lon.getText().toString());
-                newLocation.add(newLocation, "Location Removed");
+                newLocation.add(null, "Location Removed");
+                //double latitude, longitude;
+               // WaterAddress newAddress = new WaterAddress(latitude = Double.parseDouble
+                //        (lat.getText().toString()), longitude = Double.parseDouble(lon.getText
+                // ().toString))));
+                //newLocation.add(newAddress, "Location Added");
             }
         });
         AlertDialog ad = builder.create();
@@ -187,11 +193,13 @@ public class edit_db extends AppCompatActivity {
         private String latitude;
         private String key;
 
-        public void add(Locations location, String toastText)
+        public void add(WaterAddress location, String toastText)
         {
             Firebase.setAndroidContext(edit_db.this);
-            Firebase firebase = new Firebase(getString(R.string.Firebase_URL) + "/locations");
-            firebase.push().setValue(location);
+            //Firebase firebase = new Firebase (getString(R.string.Firebase_URL) + "/locations");
+            Firebase address = new Firebase(getString(R.string.Firebase_URL));
+            address.setValue(location);
+            //firebase.push().setValue(location);
             Toast.makeText(edit_db.this, toastText, Toast.LENGTH_SHORT).show();
         }
 
