@@ -5,7 +5,7 @@
     <string name="title_activity_show_water">Map</string>
     <string name="flint_marker">Marker in flint</string>
     <string name="title_activity_address_info">address_info</string>
-    <string name="Firebase_URL">"https://incandescent-fire-5642.firebaseio.com/WaterAddress"</string>
+    <string name="Firebase_URL">"https://luminous-torch-6382.firebaseio.com/WaterAddress"</string>
     <string name="title_activity_admin_login">Login</string>
     <string name="title_activity_edit_db">Edit Location</string>
 </resources>

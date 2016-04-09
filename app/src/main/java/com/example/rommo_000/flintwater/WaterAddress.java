@@ -18,15 +18,15 @@ public class WaterAddress {
                 //Defualt Constructor
         }
 
-       /* public WaterAddress(double lat, double lon) {
+       public WaterAddress(String location_in, String street_in, String city_in, String state_in, int zipcode, double lat, double lon) {
                 latitude = lat;
                 longitude = lon;
-                location = "New Location";
-                city = "Flint";
-                state = "MI";
-                address = "New address";
-                zipCode = 48502;
-        }*/
+                location = location_in;
+                city = city_in;
+                state = state_in;
+                address = street_in;
+                zipCode = zipcode;
+        }
 
         public double getLongitude() {return longitude;}
 

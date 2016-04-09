@@ -79,7 +79,7 @@ public class edit_db extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -96,22 +96,51 @@ public class edit_db extends AppCompatActivity {
     public void addLocation(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Add Location");
-        builder.setMessage("Please enter the coordinates");
+        builder.setMessage("Please enter the address");
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
+        final EditText locationName = new EditText(this);
+        final EditText street = new EditText(this);
+        final EditText city = new EditText(this);
+        final EditText state = new EditText(this);
+        final EditText zipcode = new EditText(this);
         final EditText lat = new EditText(this);
         final EditText lon = new EditText(this);
+        locationName.setHint("Name of Location");
+        street.setHint("Address");
+        city.setHint("City");
+        state.setHint("State");
+        zipcode.setHint("Zipcode");
+        lat.setHint("Latitude");
+        lon.setHint("Longitude");
+        layout.addView(locationName);
+        layout.addView(street);
+        layout.addView(city);
+        layout.addView(state);
+        layout.addView(zipcode);
         layout.addView(lat);
         layout.addView(lon);
         builder.setView(layout);
+
 
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //Locations newLocation = new Locations(lat.getText().toString(),lon.getText()
-                       // .toString());
-                //newLocation.add(newLocation,"Location Added");
+                final int zip;
+                final double latitude;
+                final double longitude;
+                zip = Integer.parseInt(zipcode.getText().toString());
+                latitude = Double.parseDouble(lat.getText().toString());
+                longitude = Double.parseDouble(lon.getText().toString());
+                WaterAddress newLocation = new WaterAddress(locationName.getText().toString(), street.getText().toString(), city.getText().toString(), state.getText().toString(), zip, latitude, longitude);
+                Locations location = new Locations();
+                location.add(null, "Location Removed");
+                //double latitude, longitude;
+                // WaterAddress newAddress = new WaterAddress(latitude = Double.parseDouble
+                //        (lat.getText().toString()), longitude = Double.parseDouble(lon.getText
+                // ().toString))));
+                //newLocation.add(newAddress, "Location Added");
             }
         });
         AlertDialog ad = builder.create();
@@ -121,20 +150,19 @@ public class edit_db extends AppCompatActivity {
     public void removeLocation(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Remove Location");
-        builder.setMessage("Please enter the coordinates");
+        builder.setMessage("Name of Location to be removed?");
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
-        final EditText lat = new EditText(this);
-        final EditText lon = new EditText(this);
-        layout.addView(lat);
-        layout.addView(lon);
+        final EditText locationName = new EditText(this);
+        locationName.setHint("Location Name");
+        layout.addView(locationName);
         builder.setView(layout);
 
         builder.setNegativeButton(android.R.string.cancel, null);
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Locations newLocation = new Locations(lat.getText().toString(),lon.getText().toString());
+                Locations newLocation = new Locations();
                 newLocation.add(null, "Location Removed");
                 //double latitude, longitude;
                // WaterAddress newAddress = new WaterAddress(latitude = Double.parseDouble
