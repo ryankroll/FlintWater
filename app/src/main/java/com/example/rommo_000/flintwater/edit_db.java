@@ -70,15 +70,7 @@ public class edit_db extends AppCompatActivity {
         setContentView(R.layout.activity_edit_db);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -135,7 +127,7 @@ public class edit_db extends AppCompatActivity {
                 longitude = Double.parseDouble(lon.getText().toString());
                 WaterAddress newLocation = new WaterAddress(locationName.getText().toString(), street.getText().toString(), city.getText().toString(), state.getText().toString(), zip, latitude, longitude);
                 Locations location = new Locations();
-                location.add(null, "Location Removed");
+                location.add(null, "Location Added");
                 //double latitude, longitude;
                 // WaterAddress newAddress = new WaterAddress(latitude = Double.parseDouble
                 //        (lat.getText().toString()), longitude = Double.parseDouble(lon.getText
@@ -225,8 +217,8 @@ public class edit_db extends AppCompatActivity {
         {
             Firebase.setAndroidContext(edit_db.this);
             //Firebase firebase = new Firebase (getString(R.string.Firebase_URL) + "/locations");
-            Firebase address = new Firebase(getString(R.string.Firebase_URL));
-            address.setValue(location);
+            //Firebase address = new Firebase(getString(R.string.Firebase_URL));
+            //address.setValue(location);
             //firebase.push().setValue(location);
             Toast.makeText(edit_db.this, toastText, Toast.LENGTH_SHORT).show();
         }
