@@ -92,7 +92,7 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback
                     mMap.addMarker((new MarkerOptions().position((new LatLng(address.getLatitude
                             (), address.getLongitude()))).title(address.getLocation())).snippet
                             (address.getAddress()+ ", "  + address.getCity() +  " " +address
-                                    .getState() + ", " + address.getZipCode()));
+                                    .getState() + ", " + x));
                 }
             }
 
@@ -101,6 +101,7 @@ public class show_water extends FragmentActivity implements OnMapReadyCallback
                 Log.d("Failure: ", firebaseError.getMessage());
             }
         });
+        //for (int i = 0; i < )
     }
     /*@Override
     public void onInfoWindowClick(Marker marker) {
